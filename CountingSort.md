@@ -51,6 +51,7 @@ Fill in the first element, $4$, into the right position, $2$. Then, update $4$ c
 Array $S$:
 | | | | | 4 | | | |
 |---|---|---|---|---|---|---|---|
+
 Array $A$:
 | 0 | 1 | 3 | 3 | 4 | 6 | 6 | 7 | 8 |
 |---|---|---|---|---|---|---|---|---|
@@ -59,6 +60,7 @@ Fill in the second element, $2$, into the right position, $3$. Then, update $2$ 
 Array $S$:
 | | | 2| | 4 | | | |
 |---|---|---|---|---|---|---|---|
+
 Array $A$:
 | 0 | 1 | 2 | 3 | 4 | 6 | 6 | 7 | 8 |
 |---|---|---|---|---|---|---|---|---|
@@ -67,6 +69,7 @@ Fill in the third element, $1$, into the right position, $1$. Then, update $1$ c
 Array $S$:
 | 1| | 2| | 4 | | | |
 |---|---|---|---|---|---|---|---|
+
 Array $A$:
 | 0 | 0 | 2 | 3 | 4 | 6 | 6 | 7 | 8 |
 |---|---|---|---|---|---|---|---|---|
@@ -75,6 +78,7 @@ Fill in the fourth element, $8$, into the right position, $8$. Then, update $8$ 
 Array $S$:
 | 1| | 2| | 4 | | | 8 |
 |---|---|---|---|---|---|---|---|
+
 Array $A$:
 | 0 | 0 | 2 | 3 | 4 | 6 | 6 | 7 | 7 |
 |---|---|---|---|---|---|---|---|---|
@@ -83,6 +87,7 @@ Fill in the fifth element, $2$, into the right position, $2$. Then, update $2$ c
 Array $S$:
 | 1| 2 | 2| | 4 | | | 8 |
 |---|---|---|---|---|---|---|---|
+
 Array $A$:
 | 0 | 0 | 1 | 3 | 4 | 6 | 6 | 7 | 7 |
 |---|---|---|---|---|---|---|---|---|
@@ -91,6 +96,7 @@ Fill in the sixth element, $5$, into the right position, $6$. Then, update $5$ c
 Array $S$:
 | 1| 2 | 2| | 4 | 5 | | 8 |
 |---|---|---|---|---|---|---|---|
+
 Array $A$:
 | 0 | 0 | 1 | 3 | 4 | 5 | 6 | 7 | 7 |
 |---|---|---|---|---|---|---|---|---|
@@ -99,6 +105,7 @@ Fill in the seventh element, $7$, into the right position, $7$. Then, update $7$
 Array $S$:
 | 1| 2 | 2| | 4 | 5 | 7 | 8 |
 |---|---|---|---|---|---|---|---|
+
 Array $A$:
 | 0 | 0 | 1 | 3 | 4 | 5 | 6 | 6 | 7 |
 |---|---|---|---|---|---|---|---|---|
@@ -107,6 +114,7 @@ Fill in the seventh element, $4$, into the right position, $4$. Then, update $4$
 Array $S$:
 | 1| 2 | 2| 4 | 4 | 5 | 7 | 8 |
 |---|---|---|---|---|---|---|---|
+
 Array $A$:
 | 0 | 0 | 1 | 3 | 3 | 5 | 6 | 6 | 7 |
 |---|---|---|---|---|---|---|---|---|
