@@ -131,55 +131,68 @@ No matter what the initial array $O$ is, the same steps are performed, so the ru
 #### Coded Implementation (Java)
 
 ```
+import java.io.*;
+import java.util.*;
+import java.util.stream.IntStream;
+
+public class CountingSortTesting {
+    // Driver code
+    public static void main(String args[]) {
+        for(int dataLength = 1; dataLength <= 100; ++dataLength){
+            // Generate Random dataLength-length array: https://stackoverflow.com/questions/28970799/how-to-create-a-array-with-n-random-integers
+            int[] data = IntStream.generate(() -> new Random().nextInt(100)).limit(dataLength).toArray();
+
+            // Apply CountingSort Algorithm
+            CountingSort cs = new CountingSort();
+            cs.countSort(data, dataLength);
+
+            // Check for Sorted
+            for(int i = 1; i<dataLength; ++i){
+                assert(data[i-1] <= data[i]);
+            }
+        }
+        System.out.println("All Tests Passed");
+    }
+}
 class CountingSort {
-  void countSort(int array[], int size) {
-    int[] output = new int[size + 1];
+    void countSort(int array[], int size) {
+        int[] output = new int[size + 1];
 
-    // Determine range from maximal element in array
-    int max = array[0];
-    for (int i = 1; i < size; i++) {
-      if (array[i] > max)
-        max = array[i];
+        // Determine range from maximal element in array
+        int max = array[0];
+        for (int i = 1; i < size; i++) {
+            if (array[i] > max)
+                max = array[i];
+        }
+        int[] count = new int[max + 1];
+
+        // Initialize frequency count array with all zeros.
+        for (int i = 0; i < max; ++i) {
+            count[i] = 0;
+        }
+
+        // Store the the frequency of each element
+        for (int i = 0; i < size; i++) {
+            count[array[i]]++;
+        }
+
+        // Store the cummulative frequency count of every element
+        for (int i = 1; i <= max; i++) {
+            count[i] += count[i - 1];
+        }
+
+        // Find the index of each element of the original array in count array, and
+        // place the elements in output array
+        for (int i = size - 1; i >= 0; i--) {
+            output[count[array[i]] - 1] = array[i];
+            count[array[i]]--;
+        }
+
+        // Copy the sorted elements into original array
+        for (int i = 0; i < size; i++) {
+            array[i] = output[i];
+        }
     }
-    int[] count = new int[max + 1];
-
-    // Initialize frequency count array with all zeros.
-    for (int i = 0; i < max; ++i) {
-      count[i] = 0;
-    }
-
-    // Store the the frequency of each element
-    for (int i = 0; i < size; i++) {
-      count[array[i]]++;
-    }
-
-    // Store the cummulative frequency count of every element
-    for (int i = 1; i <= max; i++) {
-      count[i] += count[i - 1];
-    }
-
-    // Find the index of each element of the original array in count array, and
-    // place the elements in output array
-    for (int i = size - 1; i >= 0; i--) {
-      output[count[array[i]] - 1] = array[i];
-      count[array[i]]--;
-    }
-
-    // Copy the sorted elements into original array
-    for (int i = 0; i < size; i++) {
-      array[i] = output[i];
-    }
-  }
-
-  // Driver code
-  public static void main(String args[]) {
-    int[] data = { 4, 2, 1, 8, 2, 5, 4 };
-    int size = data.length;
-    CountingSort cs = new CountingSort();
-    cs.countSort(data, size);
-    System.out.println("Sorted Array in Ascending Order: ");
-    System.out.println(Arrays.toString(data));
-  }
 }
 ```
 #### Sources
