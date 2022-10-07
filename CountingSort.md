@@ -185,8 +185,11 @@ class CountingSort {
 #### Sources
 
 Introduction - https://www.programiz.com/dsa/counting-sort
-Algorithm Description + Visual Motiations - https://www.programiz.com/dsa/counting-sort 
+
+Algorithm Description + Visual Motiations - https://www.programiz.com/dsa/counting-sort
+
 Implementation - https://www.javatpoint.com/counting-sort
+
 Markdown Support - https://support.typora.io/Draw-Diagrams-With-Markdown/
 
 
