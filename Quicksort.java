@@ -1,125 +1,83 @@
-class Stack
-{
-    private int arr[]; // array to store stack
-    private int top; // variable to track rightmost element of stack
-    private int capacity; // maximum possible size of stack
- 
-    // Constructor of stack, which initializes with size
-    Stack(int size)
-    {
-        arr = new int[size];
-        capacity = size;
-        top = -1; 
-    }
- 
-    // This method adds (or pushes) an element in from the right
-    public void push(int n)
-    {
-        if(top < capacity - 1){ // checks to make sure stack is not full or not
-            top++;
-            arr[top] = n;
-        }
-    }
- 
-    // This method returns (or pops) the rightmost element back out
-    public int pop()
-    {
-        if(top > -1){ // checks to make sure stack is nonempty
-            return arr[top--];
-        }
-        else{
-            return -900;
-        }
-    }
- 
-    // Checks rightmost element of stack 
-    public int peek()
-    {
-        if (top > -1) { // checks stack is nonempty
-            return arr[top];
-        }
-        else{
-            return -900;
-        }
-    }
+import java.util.*; 
+  
+public class QuickSort
+{     
+    // We will be performing Quicksort with a randomly selected pivot
     
-    // Returns size
-    public int size()
-    {
-        return top + 1;
+    public static int randompivot(int arr[]) // randomly select index of pivot in array
+    { 
+        int pivot = (int) (arr.length*Math.random()); 
+        return pivot;
     }
-}
- 
-class Main
-{
-    public static boolean testpeek(int n){ // performs test on peek method by initializing stack of capacity n and random initial size
-        Stack stack = new Stack(n);
-        int rsize = (int) (n*Math.random()); // determine random initial size of stack (cannot be full)
-        for(int i = 0; i < rsize; i++){
-            stack.push((int) (100*Math.random())); // initialize random stack with randomized size
+      
+    // The partition function moves all elements with valuation smaller than pivot before it and bigger after it
+    public static int partition(int arr[], int low, int high) 
+    { 
+        // pivot chosen randomly 
+        int pivot = randompivot(arr); 
+        pivot = high;
+      
+        int counter = (low-1); // placeholder to swap higher valuated elements to a position before pivot
+        for (int i = low; i <= high; i++) 
+        { 
+            if (arr[i] < arr[pivot]) // smaller elements get swapped to before the pivot
+            { 
+                counter++; 
+  
+                // move arr[i] to arr[counter] via swap
+                int temp = arr[counter]; 
+                arr[counter] = arr[i]; 
+                arr[i] = temp; 
+            } 
         }
-        int topush = (int) (100*Math.random()); 
-        stack.push(topush);
-        if(stack.peek() == topush){
-            return true;
-        }
-        else{
-            return false;
-        }
-    }
-    
-    public static boolean testpop(int n){ // performs test on pop method by initializing stack of capacity n and random initial size
-        Stack stack = new Stack(n);
-        int rsize = 1 + (int) (n*Math.random()); // determine random initial size of stack (nonempty)
-        for(int i = 0; i < rsize; i++){
-            stack.push((int) (100*Math.random())); // initialize random stack with randomized size
-        }
-        if(stack.peek() == stack.pop()){
-            if(stack.size() == rsize - 1){ // nested criteria checks popped value is last array element and size decreases by 1
-                return true;
-            }
+        
+        // by this point, counter+1 is kind of the real pivot
+        
+        int temp = arr[counter + 1];
+        arr[counter+1] = arr[pivot];
+        arr[pivot] = temp;
+        return counter+1;
+    } 
+  
+  
+    // To actually do quicksort on an array arr[] we must call it with low = 0, high = arr.length - 1. 
+    static void sort(int arr[], int low, int high) 
+    { 
+        if (low < high) // then the array still needs sorting
+        { 
+            int p = partition(arr, low, high); // create partition from random pivot
+            sort(arr, low, p-1); // sort left partition
+            sort(arr, p+1, high); //sort right partition
+        } 
+    } 
+  
+    // Method to print array
+    static void printArray(int arr[]) 
+    { 
+        for (int i = 0; i < arr.length; ++i) 
+            System.out.print(arr[i]+" "); 
+        System.out.println(); 
+    } 
+  
+  static boolean test(int n){ // generate random array with size n and elements from 0 to 100, then call quicksort and check if elements are nondecreasing
+    int [] arr = new int[n];
+      for(int i = 0; i < n; i++)
+      {
+          arr[i] = (int) (100*Math.random());
+      }
+      sort(arr, 0, n-1);
+      for(int i = 0; i < n-1; i++)
+      {
+          if(arr[i] > arr[i+1])
             return false; 
-        }
-        else{
-            return false;
-        }
-    }
-    
-    public static boolean testpush(int n){ // performs test on pop method by initializing stack of capacity n and random initial size
-        Stack stack = new Stack(n);
-        int rsize = (int) (n*Math.random()); // determine random initial size of stack (not full)
-        for(int i = 0; i < rsize; i++){
-            stack.push((int) (100*Math.random())); // initialize random stack with randomized size
-        }
-        int tobepushed = (int) (100*Math.random());
-        stack.push(tobepushed);
-        if(stack.peek() == tobepushed){ 
-            if(stack.size() == rsize + 1){ // nested criteria checks if pushed value is at top and size increases by 1
-                return true;
-            }
-            return false; 
-        }
-        else{
-            return false;
-        }
-    }
-    
-    public static void main (String[] args)
+      }
+      return true;
+  }
+    public static void main(String args[]) 
     {
-        // peek testing - loop through 4 distinct peek tests for distinct n up to 20
-        for(int i = 0; i < 4; i++){
-            System.out.println(testpeek((int) (20*Math.random())));
+        for(int i = 0; i < 10; i++) // generates 10 random tests using the test method with random sizes of arrays from 0 to 20
+        {
+            System.out.println(test((int) (20*Math.random())));
         }
-        
-        // pop testing - loop through 4 distinct pop tests for distinct n up to 20
-        for(int i = 0; i < 4; i++){
-            System.out.println(testpop((int) (20*Math.random())));
-        }
-        
-        // push testing - loop through 4 distinct push tests for distinct n up to 20
-        for(int i = 0; i < 4; i++){
-            System.out.println(testpush((int) (20*Math.random())));
-        }
-        
-    }
-}
+    } 
+} 
