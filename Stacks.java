@@ -120,6 +120,6 @@ class Main
         for(int i = 0; i < 4; i++){
             System.out.println(testpush((int) (20*Math.random())));
         }
+        
     }
-    // Sources: https://www.geeksforgeeks.org/stack-class-in-java/ 
 }
